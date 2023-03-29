@@ -12,7 +12,8 @@ URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
 client_id = "78907c8b-fe98-4f57-bcc6-1a9859d60515"
 permissions = ['offline_access', 'files.readwrite', 'User.Read']
 response_type = 'code'
-redirect_uri = 'https://onedrive.live.com/?authkey=%21ANwuwr2Xywtx%5FQ4&id=1D93133541FEA9C0%2112436&cid=1D93133541FEA9C0'
+#redirect_uri = 'https://onedrive.live.com/?authkey=%21ANwuwr2Xywtx%5FQ4&id=1D93133541FEA9C0%2112436&cid=1D93133541FEA9C0'
+redirect_uri = 'http://localhost:8080/'
 scope = ''
 for items in range(len(permissions)):
     scope = scope + permissions[items]
