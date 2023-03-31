@@ -3,6 +3,7 @@
 def clean_data():
     #LIBRARIES
     import pandas as pd
+    from writeto_onedrive import write_to_onedrive
 
     #Configurations
     pd.set_option("display.max_rows", None)
@@ -142,6 +143,7 @@ def clean_data():
     # new_df['Admission_Date'].value_counts()
 
     print("Cleaning was successful")
-    df.to_excel('indus clean 2.xlsx')
+    # df.to_excel('indus clean 2.xlsx')
+    write_to_onedrive(df)
     
 clean_data()
