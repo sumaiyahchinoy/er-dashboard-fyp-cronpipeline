@@ -142,3 +142,6 @@ def clean_data():
     # new_df['Admission_Date'].value_counts()
 
     print("Cleaning was successful")
+    df.to_excel('indus clean 2.xlsx')
+    
+clean_data()
