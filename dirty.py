@@ -16,7 +16,7 @@ df.pop(df.columns[0])
 # df = df.drop(['MR_DOB'], axis = 'columns')
 # df = df.drop(['AJ'], axis = 'columns')
 
-cols = ['A', 'MR_DOB', 'AJ', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'NURSE_NAME', 'DOCTOR_ID', 'DOCTOR_NAME', 'SPECIALTY', 'AJ', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
+cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'NURSE_NAME', 'DOCTOR_ID', 'DOCTOR_NAME', 'SPECIALTY', 'AJ', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
 for col_name in cols:
     df = df.drop([col_name], axis = 'columns')
     

@@ -1,15 +1,9 @@
-    # -*- coding: utf-8 -*-
 
 def clean_data():
     #LIBRARIES
     import pandas as pd
 
-    #Configurations
-    pd.set_option("display.max_rows", None)
-
-
-
-    data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2019 Anonymized.xlsx')
+    data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2020 Anonymized.xlsx')
 
     """# New section"""
 
