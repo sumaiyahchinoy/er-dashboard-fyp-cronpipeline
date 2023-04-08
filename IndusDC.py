@@ -25,6 +25,9 @@ def clean_data():
     #Dropping columns with ALL null values
     df.dropna(how = 'all', axis= 1)
     # df.info()
+    
+    #dropping records
+    df = df[df.Triage_Datetime != df.ER_No]
 
     """DATA MANIPULATION"""
 
