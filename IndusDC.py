@@ -5,7 +5,7 @@ def clean_data():
     import pandas as pd
     from writeto_onedrive import write_to_onedrive
 
-    data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2020 Anonymized.xlsx') ##must change the reading locatiom
+    data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2021 Anonymized.xlsx') ##must change the reading locatiom
     df = pd.DataFrame(data)
     # df.info()
     # df.head(5)
@@ -14,7 +14,11 @@ def clean_data():
 
     #dropping columns
     df.pop(df.columns[0])
-    cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'NURSE_NAME', 'DOCTOR_ID', 'DOCTOR_NAME', 'SPECIALTY', 'AJ', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
+    ##2019
+    # cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'NURSE_NAME', 'DOCTOR_ID', 'DOCTOR_NAME', 'SPECIALTY', 'AJ', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
+    
+    ##2020
+    cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'DOCTOR_ID', 'SPECIALTY', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
     for col_name in cols:
         df = df.drop([col_name], axis = 'columns')
 

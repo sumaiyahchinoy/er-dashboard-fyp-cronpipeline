@@ -7,9 +7,9 @@ def create_onedrive_directdownload (onedrive_link):
     resultUrl = f"https://api.onedrive.com/v1.0/shares/u!{data_bytes64_String}/root/content"
     return resultUrl
 
-onedrive_link = "https://1drv.ms/x/s!AsCp_kE1E5Md52GlJNVCZuIy8qE6?e=jsP34P"
-link = create_onedrive_directdownload(onedrive_link)
+# onedrive_link = "https://1drv.ms/x/s!AsCp_kE1E5Md52GlJNVCZuIy8qE6?e=jsP34P"
+# link = create_onedrive_directdownload(onedrive_link)
 # print(link)
 
-df = pd.read_excel(link)
-print(df.head())
+# df = pd.read_excel(link)
+# print(df.head())
