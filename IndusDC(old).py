@@ -1,15 +1,9 @@
-    # -*- coding: utf-8 -*-
 
 def clean_data():
     #LIBRARIES
     import pandas as pd
 
-    #Configurations
-    pd.set_option("display.max_rows", None)
-
-
-
-    data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2019 Anonymized.xlsx')
+    data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2020 Anonymized.xlsx')
 
     """# New section"""
 
@@ -77,10 +71,10 @@ def clean_data():
     # print(df.head(5))
 
     #Nurse Employee Codes with invalid user name
-    df.loc[(df['NURSE_EMP_CODE'] == 'Invalid User Name...........'), 'NURSE_EMP_CODE'] = 'Unidentified'
+    # df.loc[(df['NURSE_EMP_CODE'] == 'Invalid User Name...........'), 'NURSE_EMP_CODE'] = 'Unidentified'
     # print(df['NURSE_EMP_CODE'].value_counts())
 
-    df['NURSE_NAME'] = df['NURSE_NAME'].str.title()
+    # df['NURSE_NAME'] = df['NURSE_NAME'].str.title()
     # print(df['NURSE_NAME'].describe)
 
     # print(df['DISPOSITION'].value_counts()) #no change
@@ -105,8 +99,8 @@ def clean_data():
     #print(df['ED_DX'].value_counts())
     # print(df['ED_DX'])
 
-    df['DOCTOR_NAME'] = df['DOCTOR_NAME'].str.title()
-    df['SPECIALTY'] = df['SPECIALTY'].str.title()
+    # df['DOCTOR_NAME'] = df['DOCTOR_NAME'].str.title()
+    # df['SPECIALTY'] = df['SPECIALTY'].str.title()
 
     # print(df['ADMISSION_WARD'].value_counts())
     # print(df['DISCHARGE_WARD'].value_counts())
@@ -119,19 +113,19 @@ def clean_data():
     new_df.columns = new_df.columns.str.title()
 
     new_df.columns = new_df.columns.str.replace("Er_No", "ER_No")
-    new_df.columns = new_df.columns.str.replace("Bp", "BP")
-    new_df.columns = new_df.columns.str.replace("Tr_Pulse", "Triage_Pulse")
-    new_df.columns = new_df.columns.str.replace("Tr_Temp", "Triage_Temp")
-    new_df.columns = new_df.columns.str.replace("Tr_Pulse", "Triage_Pulse")
-    new_df.columns = new_df.columns.str.replace("O2Sat", "O2_Saturation")
-    new_df.columns = new_df.columns.str.replace("Nurse_Userid", "Nurse_User_ID")
+    # new_df.columns = new_df.columns.str.replace("Bp", "BP")
+    # new_df.columns = new_df.columns.str.replace("Tr_Pulse", "Triage_Pulse")
+    # new_df.columns = new_df.columns.str.replace("Tr_Temp", "Triage_Temp")
+    # new_df.columns = new_df.columns.str.replace("Tr_Pulse", "Triage_Pulse")
+    # new_df.columns = new_df.columns.str.replace("O2Sat", "O2_Saturation")
+    # new_df.columns = new_df.columns.str.replace("Nurse_Userid", "Nurse_User_ID")
     new_df.columns = new_df.columns.str.replace("Hopi_", "HOPI")
     new_df.columns = new_df.columns.str.replace("Er_Dx", "ER_Diagnosis")
-    new_df.columns = new_df.columns.str.replace("Doctor_Id", "Doctor_ID")
-    new_df.columns = new_df.columns.str.replace("Lostriage", "Los_Triage")
-    new_df.columns = new_df.columns.str.replace("Losed", "Los_ED")
-    new_df.columns = new_df.columns.str.replace("Loshospital", "Los_Hospital")
-    new_df.columns = new_df.columns.str.replace("New_Mr", "New_MR")
+    # new_df.columns = new_df.columns.str.replace("Doctor_Id", "Doctor_ID")
+    # new_df.columns = new_df.columns.str.replace("Lostriage", "Los_Triage")
+    # new_df.columns = new_df.columns.str.replace("Losed", "Los_ED")
+    # new_df.columns = new_df.columns.str.replace("Loshospital", "Los_Hospital")
+    # new_df.columns = new_df.columns.str.replace("New_Mr", "New_MR")
     new_df.columns = new_df.columns.str.replace("Triagecomplaint", "Triage_Complaint")
     # new_df.info()
 
@@ -142,3 +136,5 @@ def clean_data():
     # new_df['Admission_Date'].value_counts()
 
     print("Cleaning was successful")
+    
+clean_data()
