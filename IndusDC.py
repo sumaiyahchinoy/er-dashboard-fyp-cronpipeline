@@ -18,7 +18,7 @@ def clean_data():
     # cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'NURSE_NAME', 'DOCTOR_ID', 'DOCTOR_NAME', 'SPECIALTY', 'AJ', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
     
     ##2020
-    cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'DOCTOR_ID', 'SPECIALTY', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
+    cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'DOCTOR_ID', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
     for col_name in cols:
         df = df.drop([col_name], axis = 'columns')
 
@@ -28,6 +28,7 @@ def clean_data():
     
     #dropping records
     df = df[df.Triage_Datetime != df.ER_No]
+    df.drop(df[df['SPECIALTY'] == "GYNAE & OBS"].index, inplace = True)
 
     """DATA MANIPULATION"""
 
