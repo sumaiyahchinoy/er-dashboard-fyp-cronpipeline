@@ -100,6 +100,6 @@ def clean_data():
 
     print("Cleaning was successful")
     # df.to_excel('indus clean 2.xlsx')
-    write_to_onedrive(df)
+    write_to_onedrive(df) #add write to one drive in med ner
     
 clean_data()
