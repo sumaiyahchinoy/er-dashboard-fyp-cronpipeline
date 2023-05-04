@@ -172,4 +172,3 @@ pyrightconfig.json
 
 *.joblib
 *.xlsx
-append_dirty_data.py
