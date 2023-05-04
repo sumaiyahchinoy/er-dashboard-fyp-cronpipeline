@@ -1,4 +1,4 @@
-def write_to_onedrive(df):
+def write_to_onedrive(df, file_name):
     import onedrivesdk
     from onedrivesdk.helpers import GetAuthCodeServer
 
@@ -45,7 +45,8 @@ def write_to_onedrive(df):
     print("Conversion Succesful")
     # # print(file)
     # # returned_item = client.item(id='1D93133541FEA9C0!12436').children['newfile.txt'].upload(file)   
-    returned_item = client.item(id=fyp_folder_id).children['cleaned_dataset_merged.xlsx'].upload('test.xlsx') 
+    # returned_item = client.item(id=fyp_folder_id).children['cleaned_dataset_merged.xlsx'].upload('test.xlsx')
+    returned_item = client.item(id=fyp_folder_id).children[file_name].upload('test.xlsx')  
     returned_item
     print("File successfully uploaded")
     # returned_item
