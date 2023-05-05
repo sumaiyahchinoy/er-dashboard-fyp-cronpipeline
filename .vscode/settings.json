@@ -1,3 +1,6 @@
 {
-    "git-blame.gitWebUrl": ""
+    "git-blame.gitWebUrl": "",
+    "files.exclude": {
+        "**/__pycache__": true
+   }
 }

@@ -1,30 +1,27 @@
-    # -*- coding: utf-8 -*-
-
 def clean_data():
     #LIBRARIES
     import pandas as pd
-    from writeto_onedrive import write_to_onedrive
+    from access_onedrive import create_onedrive_directdownload
+    from MedicalNER import medner
 
-    data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2021 Anonymized.xlsx') ##must change the reading locatiom
+    new_data_onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hHi2av2ez6BdQ9S?e=UexbnL' #New Data.xlsx
+    link = create_onedrive_directdownload(new_data_onedrive_link)
+    data = pd.read_excel(link)    
+    
+    #Convert Excel to DataFrame
     df = pd.DataFrame(data)
-    # df.info()
-    # df.head(5)
 
     """DATA CLEANING"""
 
     #dropping columns
     df.pop(df.columns[0])
-    ##2019
-    # cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'NURSE_NAME', 'DOCTOR_ID', 'DOCTOR_NAME', 'SPECIALTY', 'AJ', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
-    
-    ##2020
+
     cols = ['A', 'MR_DOB', 'BP', 'TR_PULSE', 'TR_TEMP', 'TR_RESP', 'SYSTOLIC', 'DIASTOLIC', 'TEMPERATURE', 'WEIGHT', 'O2SAT', 'NURSE_USERID', 'NURSE_EMP_CODE', 'DOCTOR_ID', 'month', 'day', 'hour', 'lostriage', 'loshospital', 'losED', 'new_mr']
     for col_name in cols:
         df = df.drop([col_name], axis = 'columns')
 
     #Dropping columns with ALL null values
     df.dropna(how = 'all', axis= 1)
-    # df.info()
     
     #dropping records
     df = df[df.Triage_Datetime != df.ER_No]
@@ -100,6 +97,8 @@ def clean_data():
 
     print("Cleaning was successful")
     # df.to_excel('indus clean 2.xlsx')
-    write_to_onedrive(df)
+    
+    medner(new_df)
+    # write_to_onedrive(new_df) #add write to one drive in med ner
     
 clean_data()
