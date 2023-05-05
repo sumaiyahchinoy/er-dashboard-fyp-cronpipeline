@@ -4,7 +4,7 @@ def clean_data():
     from access_onedrive import create_onedrive_directdownload
     from MedicalNER import medner
 
-    new_data_onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hQevRHs-ptqyPlE?e=VZoeuK' #New Data.xlsx
+    new_data_onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hQevRHs-ptqyPlE?e=dpbhbW' #New Data.xlsx
     link = create_onedrive_directdownload(new_data_onedrive_link)
     data = pd.read_excel(link)    
     
@@ -75,9 +75,9 @@ def clean_data():
     df.loc[(df['ED_DX'] == 'Apd'), 'ED_DX'] = 'APD'
     df['ED_DX'] = df['ED_DX'].str.replace('Uti','UTI', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace('Apd','APD', regex = True)
-    df['ED_DX'] = df['ED_DX'].str.replace(' + ',', ', regex = True)
-    df['ED_DX'] = df['ED_DX'].str.replace('+',', ', regex = True)
-    df['ED_DX'] = df['ED_DX'].str.replace('?','', regex = True)
+    df['ED_DX'] = df['ED_DX'].str.replace(' /+ ',', ', regex = True)
+    df['ED_DX'] = df['ED_DX'].str.replace('/+',', ', regex = True)
+    df['ED_DX'] = df['ED_DX'].str.replace('/?','', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace('//',', ', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace(',,',', ', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace('>','', regex = True)
@@ -109,7 +109,7 @@ def clean_data():
     import importlib
     importlib.reload(writeto_onedrive)
     from writeto_onedrive import write_to_onedrive
-    write_to_onedrive(new_df, "merged_clean_data.xlsx") #add write to one drive in med ner
+    write_to_onedrive(new_df, "merged_clean_data_2.xlsx") #add write to one drive in med ner
     print("Successfully written to one drive")
     
 clean_data()
