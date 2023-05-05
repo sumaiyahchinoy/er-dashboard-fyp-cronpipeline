@@ -1,0 +1,4 @@
+en_ner_bc5cdr_md==0.5.1
+onedrivesdk==1.1.8
+pandas==1.5.2
+schedule==1.1.0
