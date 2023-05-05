@@ -32,4 +32,7 @@ def append_new_data(df):
 
     final_data = pd.concat([old_data, new_data])
     
-    write_to_onedrive(final_data, "merged_data.xlsx")
+    write_to_onedrive(final_data, "merged_clean_data.xlsx")
+    print("New data appended successfully.")
+    
+    from ts_data import create_timeseries_data
