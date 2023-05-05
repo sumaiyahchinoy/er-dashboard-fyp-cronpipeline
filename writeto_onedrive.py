@@ -50,7 +50,7 @@ def write_to_onedrive(df, file_name):
     # import os
     # with open('test.xlsx', 'rb') as file:
     #     returned_item = client.item(id=fyp_folder_id).children[file_name].upload(file)  
-    returned_item = client.item(id=fyp_folder_id).children[file_name].upload('test.xlsx')  
+    returned_item = client.item(id=fyp_folder_id).children[file_name].upload_async('test.xlsx')  
     returned_item
     print("File successfully uploaded")
     # returned_item
@@ -155,8 +155,32 @@ def session_write(df, file_name):
     df.to_excel('test.xlsx')
     print("Conversion Successful")
 
-    returned_item = client.item(id=fyp_folder_id).children[file_name].upload('test.xlsx', chunk_size = 1024*1024*10, conflict_behavior = 'rename')  
-    returned_item
+    import os
+    file_path = 'test.xlsx'
+    # file_name = 'test.xlsxn'
+    file_size = os.path.getsize(file_path)
+    upload_url = client.item(id=fyp_folder_id).children[file_name].create_upload_session(
+        item=onedrivesdk.Item(name=file_name)).upload_url
+    session = onedrivesdk.Session(
+        upload_url=upload_url, chunk_size=1024*1024*10, file_name=file_name, file_size=file_size)
+    uploader = client.upload_session(session)
+    
+
+    with open(file_path, 'rb') as f:
+        while not uploader.is_complete():
+            try:
+                next_chunk = f.read(session.chunk_size)
+                uploader.upload_chunk(next_chunk)
+            except Exception as e:
+                print('Error uploading chunk:', e)
+                uploader.cancel()
+                break
+            
+    if uploader.is_complete():
+        result = uploader.commit()
+        print('File uploaded successfully:', result)
+    # returned_item = client.item(id=fyp_folder_id).children[file_name].upload('test.xlsx')  
+    # returned_item
     print("File successfully uploaded")
     # returned_item
 
@@ -169,4 +193,4 @@ new_df = pd.read_excel(link)
 df = pd.DataFrame(new_df) 
 print(type(df))
 
-session_write(df, "new.xlsx")
+write_to_onedrive(df, "new.xlsx")
