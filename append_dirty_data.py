@@ -12,9 +12,13 @@ for file in range(len(data_files)):
     file_link.append(create_onedrive_directdownload(data_files[file]))
 print(file_link)
 
-# data = pd.DataFrame()
-# for file in data_files:
-#     data.append(pd.read_excel(create_onedrive_directdownload(file)))
+data = pd.DataFrame()
+for link in file_link:
+    print(link)
+    df = pd.read_excel(link)
+    print(df.head(5))
+    data = data.append(df)
+    print(data.head(5))
 
 # data = pd.read_excel(link)
 
