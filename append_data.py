@@ -35,4 +35,3 @@ def append_new_data(df):
     write_to_onedrive(final_data, "merged_clean_data.xlsx")
     print("New data appended successfully.")
     
-    from ts_data import create_timeseries_data
