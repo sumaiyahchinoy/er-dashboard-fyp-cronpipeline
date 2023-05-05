@@ -2,12 +2,10 @@ def clean_data():
     #LIBRARIES
     import pandas as pd
     from access_onedrive import create_onedrive_directdownload
-    # from writeto_onedrive import write_to_onedrive
     from MedicalNER import medner
 
-    # data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2021 Anonymized.xlsx') ##must change the reading location to merged file
-    onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6UkKXCAorwdeI3bi?e=PfM5DJ' #pass actual dirty merged file
-    link = create_onedrive_directdownload(onedrive_link)
+    new_data_onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hHi2av2ez6BdQ9S?e=UexbnL' #New Data.xlsx
+    link = create_onedrive_directdownload(new_data_onedrive_link)
     data = pd.read_excel(link)    
     
     #Convert Excel to DataFrame
