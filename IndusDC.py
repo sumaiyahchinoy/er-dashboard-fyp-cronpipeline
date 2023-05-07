@@ -24,7 +24,7 @@ def clean_data():
     df.dropna(how = 'all', axis= 1)
     
     #dropping records
-    df = df[df.TRIAGE_DATETIME != df.ER_NO]
+    # df = df[df.TRIAGE_DATETIME != df.ER_NO]
     df.drop(df[df['SPECIALTY'] == "GYNAE & OBS"].index, inplace = True)
 
     """DATA MANIPULATION"""
@@ -82,6 +82,7 @@ def clean_data():
     df['ED_DX'] = df['ED_DX'].str.replace(',,',', ', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace('>','', regex = True)
 
+    df = df.drop_duplicates(subset=['ER_No', 'Gender', 'City', 'Area', 'Age_Years', 'Triage_Datetime', 'Acuity', 'Visit_Datetime', 'Nurse_Name', 'Disposition', 'Disposition_Time', 'HOPI', 'Ed_Dx', 'Doctor_Name', 'Specialty', 'Admission_Date', 'Admission_Ward', 'Discharge_Ward', 'Discharge_Datetime', 'Aj', 'Shift', 'New_Doctor_Name', 'New_Nurse_Name', 'Triage_Complaint_1', 'Triage_Complaint_2', 'Triage_Complaint_3', 'Triage_Complaint_4', 'Triage_Complaint_5'], inplace=False, ignore_index=False)
     #CHANGING COLUMN NAMES
     #df.info()
     new_df = pd.DataFrame(df)
