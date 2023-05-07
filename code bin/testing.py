@@ -4,7 +4,7 @@ def clean_data():
     from access_onedrive import create_onedrive_directdownload
     from MedicalNER import medner
 
-    new_data_onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hHi2av2ez6BdQ9S?e=UexbnL' #New Data.xlsx
+    new_data_onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hQevRHs-ptqyPlE?e=dpbhbW' #New Data.xlsx
     link = create_onedrive_directdownload(new_data_onedrive_link)
     data = pd.read_excel(link)    
     
@@ -24,7 +24,7 @@ def clean_data():
     df.dropna(how = 'all', axis= 1)
     
     #dropping records
-    # df = df[df.TRIAGE_DATETIME != df.ER_NO]
+    df = df[df.TRIAGE_DATETIME != df.ER_NO]
     df.drop(df[df['SPECIALTY'] == "GYNAE & OBS"].index, inplace = True)
 
     """DATA MANIPULATION"""
@@ -75,14 +75,13 @@ def clean_data():
     df.loc[(df['ED_DX'] == 'Apd'), 'ED_DX'] = 'APD'
     df['ED_DX'] = df['ED_DX'].str.replace('Uti','UTI', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace('Apd','APD', regex = True)
-    df['ED_DX'] = df['ED_DX'].str.replace(' + ',', ', regex = True)
-    df['ED_DX'] = df['ED_DX'].str.replace('+',', ', regex = True)
-    df['ED_DX'] = df['ED_DX'].str.replace('?','', regex = True)
+    df['ED_DX'] = df['ED_DX'].str.replace(' /+ ',', ', regex = True)
+    df['ED_DX'] = df['ED_DX'].str.replace('/+',', ', regex = True)
+    df['ED_DX'] = df['ED_DX'].str.replace('/?','', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace('//',', ', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace(',,',', ', regex = True)
     df['ED_DX'] = df['ED_DX'].str.replace('>','', regex = True)
 
-    df = df.drop_duplicates(subset=['ER_No', 'Gender', 'City', 'Area', 'Age_Years', 'Triage_Datetime', 'Acuity', 'Visit_Datetime', 'Nurse_Name', 'Disposition', 'Disposition_Time', 'HOPI', 'Ed_Dx', 'Doctor_Name', 'Specialty', 'Admission_Date', 'Admission_Ward', 'Discharge_Ward', 'Discharge_Datetime', 'Aj', 'Shift', 'New_Doctor_Name', 'New_Nurse_Name', 'Triage_Complaint_1', 'Triage_Complaint_2', 'Triage_Complaint_3', 'Triage_Complaint_4', 'Triage_Complaint_5'], inplace=False, ignore_index=False)
     #CHANGING COLUMN NAMES
     #df.info()
     new_df = pd.DataFrame(df)
@@ -99,13 +98,18 @@ def clean_data():
     print("Cleaning was successful")
     # df.to_excel('indus clean 2.xlsx')
     
-    from ts_data import create_timeseries_data
-    create_timeseries_data(new_df)
-    print("Created Data for Time Series")
+    # from ts_data import create_timeseries_data
+    # create_timeseries_data(new_df)
+    # print("Created Data for Time Series")
     
-    print("Performing Medical NER")
-    medner(new_df)
-    print("Medical NER Performed")
-    # write_to_onedrive(new_df) #add write to one drive in med ner
+    # print("Performing Medical NER")
+    # medner(new_df)
+    # print("Medical NER Performed")
+    import writeto_onedrive
+    import importlib
+    importlib.reload(writeto_onedrive)
+    from writeto_onedrive import write_to_onedrive
+    write_to_onedrive(new_df, "merged_clean_data_2.xlsx") #add write to one drive in med ner
+    print("Successfully written to one drive")
     
-# clean_data()
+clean_data()
