@@ -12,7 +12,10 @@
             "dest": ".vercel/now__IndusDC.py"
         }
     ],
-    "crons": {
-        "schedule": "*/8 * * * *"
-    }
+    "crons": [
+        {
+            "path": ".vercel/now__IndusDC.py",
+            "schedule": "*/8 * * * *"
+        }
+    ]
 }
