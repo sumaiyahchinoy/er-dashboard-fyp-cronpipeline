@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "IndusDC.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/cronjob",
+            "dest": ".vercel/now__IndusDC.py"
+        }
+    ],
+    "cron": {
+        "schedule": "*/8 * * * *"
+    }
+}
