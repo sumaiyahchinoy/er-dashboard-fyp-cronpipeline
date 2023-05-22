@@ -12,7 +12,7 @@
             "dest": ".vercel/now__IndusDC.py"
         }
     ],
-    "cron": {
+    "crons": {
         "schedule": "*/8 * * * *"
     }
 }
